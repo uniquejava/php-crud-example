@@ -1,7 +1,11 @@
 $(function () {
     $(document).on('click', 'a#user_list', function () {
         getUserList(this);
-    })
+    });
+
+    $(document).on('click', 'a#create_user_form', function () {
+        getCreateForm(this);
+    });
 });
 
 function getUserList(element) {
@@ -32,4 +36,34 @@ function renderUserList(jsonData) {
     table += '</tbody></table>';
 
     $('div#content').html(table);
+}
+
+function getCreateForm(element) {
+    var form = '<div class="input-prepend">';
+    form += '<span class="add-on"><i class="icon-user icon-black"></i> Name</span>';
+    form += '<input type="text" id="name" name="name" value="" class="input-xlarge" />';
+    form += '</div><br/><br/>';
+
+    form += '<div class="input-prepend">';
+    form += '<span class="add-on"><i class="icon-envelope icon-black"></i> Email</span>';
+    form += '<input type="text" id="email" name="email" value="" class="input-xlarge" >';
+    form += '</div><br/><br/>';
+
+    form += '<div class="input-prepend">';
+    form += '<span class="add-on"><i class="icon-headphones icon-black"></i> Mobile</span>';
+    form += '<input type="text" id="mobile" name="mobile" value="" class="input-xlarge" />';
+    form += '</div><br/><br/>';
+
+    form += '<div class="input-prepend">';
+    form += '<span class="add-on add-on-area "><i class="icon-home icon-black"></i> Address</span>';
+    form += '<textarea row="5" id="address" name="address" class="input-xlarge"></textarea>';
+    form += '</div><br/><br/>';
+
+    form += '<div class="control-group">';
+    form += '<div class="">';
+    form += '<button type="button" id="add_user" class="btn btn-primary"><i class="icon-ok icon-white"></i> Add User</buttonv';
+    form += '</div>';
+    form += '</div>';
+
+    $('div#content').html(form);
 }
