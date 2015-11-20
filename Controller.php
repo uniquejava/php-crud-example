@@ -15,6 +15,11 @@ switch ($_POST['action']) {
     case 'get_users':
         print $users->getUsers();
         break;
+    case 'add_user':
+        $user = new stdClass();
+        $user = json_decode($_POST['user']);
+        print $users->addUser($user);
+        break;
 }
 
 exit();

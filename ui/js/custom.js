@@ -6,6 +6,10 @@ $(function () {
     $(document).on('click', 'a#create_user_form', function () {
         getCreateForm(this);
     });
+
+    $(document).on('click', 'button#add_user', function () {
+        addUser(this);
+    })
 });
 
 function getUserList(element) {
@@ -66,4 +70,21 @@ function getCreateForm(element) {
     form += '</div>';
 
     $('div#content').html(form);
+}
+
+function addUser(element) {
+    $('#indicator').show();
+    var User = new Object();
+    User.name = $('input#name').val();
+    User.email = $('input#email').val();
+    User.mobile = $('input#mobile').val();
+    User.address = $('textarea#address').val();
+
+    var userJson = JSON.stringify(User);
+    $.post('Controller.php', {action:'add_user', user: userJson}, function(data, status) {
+        getUserList(element);
+        $('#indicator').hide();
+    })
+
+
 }
